@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Rabin-karp</title>
+    <title>Brute-Force</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -31,14 +31,14 @@
 
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Rabin-karp</a>
+	      <a class="navbar-brand" href="index.html">Brute-Force</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="contact.html" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="#section2" class="nav-link" id="about">About</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -50,22 +50,12 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Rabin-karp Algorithm</h1>
-            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Rabin Karp algorithm matches the hash value of the pattern with the hash value of current substring of text, and if the hash values match then only it starts matching individual characters</p>
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Brute Force Naive Algorithm</h1>
+            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Brute-force string matching compares a given pattern with all substrings of a given text. Those comparisons between substring and pattern proceed character by character unless a mismatch is found. Whenever a mismatch is found, the remaining character comparisons for that substring are dropped and the next substring can be selected immediately.</p>
           </div>
         </div>
       </div>
     </div>
-
-		<section class="ftco-intro">
-			<div class="container">
-				<div class="row justify-content-start">
-					<div class="col-md-9">
-						<h1>We're <strong>Traveler</strong> &amp; <strong>Blogger</strong> from Paris, Italy Who Loves Documenting Adventures &amp; Discoveries Around the World</h1>
-					</div>
-				</div>
-			</div>
-		</section>
 
     <section class="ftco-section">
     	<div class="container">
@@ -74,16 +64,128 @@
     				<div class="row">
     					<div class="col-md-12">
     						<div class="blog-entry ftco-animate">
-    							<a href="#" class="img" style="background-image: url(images/image_1.jpg);"></a>
+
     							<div class="text pt-2 mt-5">
-				          	<span class="big">South America</span>
-			              <h3 class="mb-4"><a href="#">Hawaii known as the Big Island</a></h3>
-			              <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+				          	<span class="big">Pattern Searching</span>
+			              <h3 class="mb-4"><a href="#">Brute-Force Algorithm</a></h3>
+			              <p class="mb-4">The brute force algorithm consists in checking, at all positions in the text between 0 and n-m, whether an occurrence of the pattern starts there or not. Then, after each attempt, it shifts the pattern by exactly one position to the right.
+
+ The brute force algorithm requires no preprocessing phase, and a constant extra space in addition to the pattern and the text. During the searching phase the text character comparisons can be done in any order. The time complexity of this searching phase is O(mn) (when searching for am-1b in an for instance). The expected number of text character comparisons is 2n.</p>
+<img src="images/stringmatch.gif" alt="img" width="700" height="300">
 			              <div class="meta-wrap d-md-flex align-items-center">
 			              </div>
 			            </div>
     						</div>
-    					</div>
+                <p>An obvious method for searching and matching substrings
+is to check every possible position of the pattern within the text. This means
+checking each position in the text at which the pattern might match. However, it is not necessary that a position is matchable, so the algorithm returns
+one of the two possible logical values: true or false. If there is a matching at
+a position, it returns true; otherwise, it returns false.</p>
+<p>The naive algorithm for string matching accepts a pattern P
+and a text T as two arguments. The pseudocode for the naive string matching algorithm is presented below.</p>
+<h5>Pseudocode :</h5>
+<pre>THE NAIVE STRING-MATCHING ALGORITHM (P,T)
+m = length(P)
+n = length(T)
+for s = 0 to n-m
+if P[1...,m] = T[s+1,...,s+m]
+then print "The pattern occurs with shift" s</pre>
+<p>The variable m is the length of the pattern P and the variable n is the length
+of the text T.</p>
+<p>The naive algorithm only uses one loop that checks the condition
+P[1, ..., M] = T[s + 1, .., s + M] for each of the possible values of the shift s
+which shows from which position the pattern matches the text.</p>
+<p>The algorithm can also be graphically described as sliding the pattern
+over the text. Using this, it can easily be seen at which shifts the pattern
+matches the corresponding characters in the text. This is depicted in Figure
+1, where the body of the for loop considers each possible shift explicitly.
+The ”if condition” checks whether the current shift is valid or not, and performs an implicit loop (which checks the characters of the pattern until either
+all positions match or there is a mismatch).</p>
+<p> Each valid shift is printed out
+by the last line (so there is an option to print more than one valid shift).
+In the example presented in Figure 1, the pattern is P = aab and the
+text is T = acaabc. The pattern is in each picture shifted by one character to
+the right. Vertical lines in each picture connect the corresponding characters
+that have been found to match. In contrast, jagged lines connect the first
+mismatched character found, if any.</p>
+<br>
+<img src="images/bf1.png" alt="img" width="500" height="200">
+<p><i>Figure 1: Graphical presentation for the naive string matching algorithm</i></p>
+<br>
+<br>
+<p>A simpler example using words from everyday life is given in Figure
+2, where green color is used for matching characters and red for the mismatching ones. This example has only one occurrence of the pattern simple
+in the text This is a simple example.</p>
+<br>
+<img src="images/bf2.png" alt="img" width="600" height="500">
+<p><i>Figure 2: A simple example for only one occurrence of the pattern found</i></p>
+<br>
+<br>
+<p>String matching algorithms are intended to find all occurrences of a
+pattern. This is depicted in Figure 3, where the pattern AABA is found
+three times in the given text.
+The worst case input is when both, the pattern and the text have the
+same form (for example, P = a
+m and T = a
+n
+), because it is necessary to
+check m characters n − m + 1-times. This leads to the worst case running
+time O((n-m+1)m), and this upper bound is tight. Fortunately, such scenarios hardly ever occurs. Most of the strings find a mismatch at the first
+character of the pattern. That is why, in practice, the average running time</p>
+<br>
+<br>
+<img src="images/bf3.png" alt="img" width="600" height="500">
+<p><i>Figure 3: An example where more than one occurrence of the pattern is found</i></p>
+<br>
+<br>
+<p>is more appropriate for estimating the running time. The naive algorithm
+does not need preprocessing because due to its simplicity there is nothing
+to be prepared before the algorithm starts. The naive algorithm is not optimal; indeed, so it has disadvantages, such as ignoring the information gained
+about the text for one value of the shift s on considering other values of s.</p>
+<br>
+<p>In Java, the function charAt is used to point at a specific character or
+position. Using this function, a comparison between the current characters
+of the pattern and the text is performed. If there is a mismatch, the pattern
+is shifted to the next character; otherwise, it returns the suitable shift of the
+pattern matching.</p>
+<br>
+<h5>Algorithm :</h5>
+<br>
+<pre>Algorithm BruteForceStringMatch(T[0...n-1], P[0...m-1])
+
+for i ← 0 to n-m do
+
+j ← 0
+
+while j < m and P[j] = T[i+j] do
+
+j++
+
+if j = m then return i
+
+return -1</pre>
+<br>
+<h5>Features :</h5>
+<ul>
+  <li>No preprocessing phase</li>
+  <li>Constant extra space</li>
+  <li>Always shifts the window by exactly 1 position to the right</li>
+  <li>Comparisons can be done in any order</li>
+  <li>Searching phase in O(mn) time complexity</li>
+  <li>2n expected text characters comparisons</li>
+</ul>
+<br>
+<br>
+<h5>Video Demonstration :</h5>
+<br>
+                <iframe width="660" height="355" src="https://www.youtube.com/embed/vtnpzDPgaU0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                <br>
+                <h5>Complexity :</h5>
+                <p>The brute force algorithm consists in checking, at all positions in the text between 0 and n-m, whether an occurrence of the pattern starts there or not. Then, after each attempt, it shifts the pattern by exactly one position to the right.
+
+                The brute force algorithm requires no preprocessing phase, and a constant extra space in addition to the pattern and the text. During the searching phase the text character comparisons can be done in any order. The time complexity of this searching phase is O(mn) (when searching for am-1b in an for instance). The expected number of text character comparisons is 2n.</p>
+<br>
+              </div>
 
     				</div>
     			</div><!-- END-->
@@ -91,9 +193,14 @@
 
 
             <div class="sidebar-box ftco-animate">
-              <h3>Paragraph</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-            </div>
+              <h3>Input and Output :</h3>
+              <pre>Input:
+Main String: “ABAAABCDBBABCDDEBCABC”, Pattern “ABC”
+Output:
+Pattern found at position: 4
+Pattern found at position: 10
+Pattern found at position: 18</pre>
+              </div>
           </div><!-- END COL -->
     		</div>
     	</div>
@@ -104,13 +211,8 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Explorer</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
+              <h2 class="ftco-heading-2">About</h2>
+              <p>Developed to Illustrate and help understand Brute Force Pattern Searching Algorithm with relevant examples.</p>
             </div>
           </div>
           <div class="col-md">
@@ -123,22 +225,19 @@
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<h2 class="ftco-heading-2">Presented by,</h2>
+              <h2 class="ftco-heading-2">Mrs. Vaishali Vbhaviskar</h5>
             	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
 	            </div>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 text-center">
+          <div class="col-md-12 text-center" id="section2">
 
             <p>
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+  <p style="color: white;">www.bruteforcealgo.ml</p>
           </div>
         </div>
       </div>
@@ -167,6 +266,31 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+  <script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("#about").on('click', function(event) {
 
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
   </body>
 </html>
